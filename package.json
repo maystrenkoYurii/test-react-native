@@ -7,9 +7,11 @@
     "ios": "react-native run-ios",
     "android": "react-native run-android",
     "format": "prettier --write \"./**/*.{js,jsx,ts,tsx}\"",
-    "postinstall": "husky install",
-    "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "jest --config \"./jest/jest.config.eslint.json\"",
+    "test": "jest --config \"./jest/jest.config.test.json\"",
+    "test:full": "jest --config \"./jest/jest.config.json\"",
+    "test:watch": "npm run test -- --watch",
+    "postinstall": "husky install"
   },
   "dependencies": {
     "react": "17.0.1",

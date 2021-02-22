@@ -1,0 +1,10 @@
+{
+  "rootDir": "../",
+  "displayName": "UNIT",
+  "runner": "jest-runner",
+  "preset": "react-native",
+  "roots": ["<rootDir>/src/"],
+  "verbose": true,
+  "notify": true,
+  "bail": false
+}
