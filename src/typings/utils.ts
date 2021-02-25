@@ -10,4 +10,6 @@ export type ExtractResponse<T extends (...arg: never[]) => unknown> = ReturnThen
 
 export type UnknownObject<T = unknown> = Record<string | number, T>;
 
+export type NumberObject = UnknownObject<number>;
+
 export type Selector<S, R> = (state: S) => R;
