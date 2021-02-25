@@ -1,7 +1,7 @@
-import { isDevelopment } from '@functions/common';
+import { getApiHost } from '@functions/common';
 
-describe('Test isDevelopment function', () => {
-  test('Function isDevelopment should return boolean', () => {
-    expect(typeof isDevelopment()).toBe('boolean');
+describe('Test getApiHost function', () => {
+  test('Function getApiHost should return string', () => {
+    expect(typeof getApiHost()).toBe('string');
   });
 });

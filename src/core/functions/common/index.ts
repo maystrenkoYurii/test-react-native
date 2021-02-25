@@ -1,7 +1,5 @@
-export const getNodeEnv = (): string => {
-  return process.env.NODE_ENV || 'development';
-};
+import { links } from '@core/constants/links';
 
-export const isDevelopment = (): boolean => {
-  return getNodeEnv() === 'development';
+export const getApiHost = (): string => {
+  return process.env.API_ENV_HOST || links.API_HOST;
 };

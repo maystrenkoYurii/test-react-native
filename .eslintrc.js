@@ -3,9 +3,10 @@ const MODULE_RESOLVER_CONFIG = require('./resolver.config');
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'react', 'react-hooks', 'react-native', 'prettier', 'import', 'jest'],
+  plugins: ['prettier', '@typescript-eslint', 'react', 'react-hooks', 'react-native', 'import', 'jest'],
   extends: [
     'eslint:recommended',
+    'plugin:prettier/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:import/errors',
     'plugin:import/typescript',
@@ -13,11 +14,9 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:react-native/all',
     'plugin:jest/recommended',
-    'prettier',
   ],
   rules: {
     'react-native/sort-styles': 'off',
-    'prettier/prettier': 'error',
     'react/prop-types': 'off',
     'no-console': 'off',
   },
@@ -35,7 +34,7 @@ module.exports = {
   env: {
     'react-native/react-native': true,
     jest: true,
-    es6: true,
     node: true,
+    es6: true,
   },
 };
