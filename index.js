@@ -1,7 +1,7 @@
 import { AppRegistry } from 'react-native';
 
-import App from '@containers/App';
+import Root from '@presentational/Root';
 
 import { constants } from '@core/constants';
 
-AppRegistry.registerComponent(constants.APP_ROOT, () => App);
+AppRegistry.registerComponent(constants.APP_ROOT, () => Root);
