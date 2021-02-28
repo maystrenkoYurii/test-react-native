@@ -15,6 +15,7 @@ import type { FlatListProps } from '@typings/common';
 import type { Callback, Nullable } from '@typings/utils';
 import type { User } from '@flux/bus/data/reducer';
 
+import { styles } from '@components/navigation';
 import { variables } from '@assets/variables';
 
 export type PressListItem = (item: User) => void;
@@ -72,7 +73,7 @@ const UserList = forwardRef<FlatList, Props & ListProps>((props, forwardedRef) =
       keyExtractor={keyExtractor}
       onEndReached={onLoadNextPage}
       initialNumToRender={initialCountRender}
-      contentContainerStyle={contentContainerStyle}
+      contentContainerStyle={[contentContainerStyle, styles.indentContentContainer]}
       refreshControl={<RefreshControl refreshing={loadingUpdate} onRefresh={onUpdateList} />}
       ListFooterComponent={<ListFooter visible={visibleFooter} loading={loadingPage} />}
       ListEmptyComponent={<StubList loading={loading || loadingUpdate} />}

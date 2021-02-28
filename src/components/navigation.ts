@@ -54,4 +54,8 @@ export const styles = StyleSheet.create({
     paddingRight: 8,
     paddingLeft: 8,
   },
+  indentContentContainer: {
+    marginTop: -StyleSheet.hairlineWidth,
+    flexGrow: 1,
+  },
 });
