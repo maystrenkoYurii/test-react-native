@@ -10,6 +10,8 @@ export const constants = {
 
   COLOR_SCHEME: colorScheme,
 
+  PAGINATION_COUNT: 20,
+
   SCREEN_MAIN: 'SCREEN_MAIN',
 
   SCREEN_USERS: 'SCREEN_USERS',

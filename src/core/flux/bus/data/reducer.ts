@@ -3,7 +3,7 @@ import { types } from '@flux/bus/data/types';
 import type { ReducerAction, Action } from '@flux/store';
 import type { PickValues } from '@typings/utils';
 
-interface User {
+export interface User {
   login: string;
   id: number;
   node_id: string;
