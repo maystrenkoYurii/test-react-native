@@ -1,3 +1,4 @@
 export const types = {
   SET_USERS_STATE: 'SET_USERS_STATE',
+  SET_FOLLOWERS_STATE: 'SET_FOLLOWERS_STATE',
 } as const;

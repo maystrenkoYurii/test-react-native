@@ -25,16 +25,19 @@ interface User {
 }
 
 const initialState = {
-  users: {} as Record<string, User[]>,
+  users: [] as User[],
+  followers: {} as Record<string, User[]>,
 } as const;
 
 type InitialState = typeof initialState;
 
 export type UsersState = PickValues<InitialState, 'users'>;
+export type FollowersState = PickValues<InitialState, 'followers'>;
 
 export type UsersAction = Action<typeof types.SET_USERS_STATE, UsersState>;
+export type FollowersAction = Action<typeof types.SET_FOLLOWERS_STATE, FollowersState>;
 
-type DataReducerAction = ReducerAction<UsersAction>;
+type DataReducerAction = ReducerAction<UsersAction | FollowersAction>;
 
 export const uiReducer = (state = initialState, action: DataReducerAction): InitialState => {
   switch (action.type) {
@@ -42,6 +45,12 @@ export const uiReducer = (state = initialState, action: DataReducerAction): Init
       return {
         ...state,
         users: action.payload,
+      };
+
+    case types.SET_FOLLOWERS_STATE:
+      return {
+        ...state,
+        followers: action.payload,
       };
 
     default:
