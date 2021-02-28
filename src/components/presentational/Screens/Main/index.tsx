@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import type { FunctionComponent } from 'react';
 
-import Users from '@presentational/Screens/Main/Users';
+import Users from '@containers/Screens/Main/Users';
 import Followers from '@presentational/Screens/Main/Followers';
 
 import { getNavigatorOptions } from '@components/navigation';
