@@ -6,6 +6,8 @@ import type { FunctionComponent } from 'react';
 
 import { ListItem } from '@presentational/Common/ListItem';
 
+import avatarMock from '@assets/images/avatar.png';
+
 import type { ItemProps } from '@presentational/UserList';
 
 const UserItem: FunctionComponent<ItemProps> = (props) => {
@@ -15,6 +17,8 @@ const UserItem: FunctionComponent<ItemProps> = (props) => {
   const isFirstItem = index === 0;
 
   const isLastItem = index === indexLast;
+
+  const avatar = avatar_url ? { uri: avatar_url } : avatarMock;
 
   const handlePress = () => onPress?.(item);
 
@@ -28,7 +32,7 @@ const UserItem: FunctionComponent<ItemProps> = (props) => {
       onPress={handlePress}
       nextStep
     >
-      <Image source={{ uri: avatar_url }} />
+      <Image source={avatar} />
     </ListItem>
   );
 };
