@@ -1,7 +1,7 @@
 import { types } from '@flux/bus/data/types';
 
 import type { ReducerAction, Action } from '@flux/store';
-import type { PickValues, UnknownObject } from '@typings/utils';
+import type { PickValues } from '@typings/utils';
 
 interface User {
   login: string;
@@ -25,7 +25,7 @@ interface User {
 }
 
 const initialState = {
-  users: {} as UnknownObject<User[]>,
+  users: {} as Record<string, User[]>,
 } as const;
 
 type InitialState = typeof initialState;
