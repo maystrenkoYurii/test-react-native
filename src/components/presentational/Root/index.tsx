@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 
 import type { FunctionComponent } from 'react';
 
-import App from '@presentational/App';
+import Screens from '@containers/Screens';
 
 import { store } from '@flux/store';
 
@@ -17,7 +17,7 @@ const Root: FunctionComponent = () => {
     <SafeAreaProvider>
       <AppearanceProvider>
         <Provider store={store}>
-          <App />
+          <Screens />
         </Provider>
       </AppearanceProvider>
     </SafeAreaProvider>
