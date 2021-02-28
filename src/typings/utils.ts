@@ -1,5 +1,7 @@
 export type Values<T> = T[keyof T];
 
+export type Callback = (...args: unknown[]) => void;
+
 export type Nullable<T = unknown> = T | undefined | null;
 
 export type PickValues<T, K extends keyof T> = Values<Pick<T, K>>;
