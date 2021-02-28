@@ -7,7 +7,7 @@ import type { ElementType } from 'react';
 import UserItem from '@presentational/UserItem';
 import RefreshControl from '@presentational/Common/RefreshControl';
 import ListFooter from '@presentational/Common/ListFooter';
-//import StubList from '@presentational/StubList';
+import StubList from '@presentational/StubList';
 
 import { keyExtractor } from '@functions/data';
 
@@ -75,7 +75,7 @@ const UserList = forwardRef<FlatList, Props & ListProps>((props, forwardedRef) =
       contentContainerStyle={contentContainerStyle}
       refreshControl={<RefreshControl refreshing={loadingUpdate} onRefresh={onUpdateList} />}
       ListFooterComponent={<ListFooter visible={visibleFooter} loading={loadingPage} />}
-      //ListEmptyComponent={<StubList loading={loading || loadingUpdate} />}
+      ListEmptyComponent={<StubList loading={loading || loadingUpdate} />}
       keyboardShouldPersistTaps="handled"
       getItemLayout={(data, index) => {
         return {
