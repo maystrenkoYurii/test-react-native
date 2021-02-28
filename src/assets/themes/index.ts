@@ -11,10 +11,10 @@ const colors = {
   // intermediate: 'rgba(14, 214, 220, 0.4)',
   // lightGrey: 'rgba(190, 190, 190, 0.6)',
   // yellow: 'rgb(253, 202, 64)',
-  // success: 'rgb(52, 199, 89)',
-  // warning: 'rgb(255, 193, 7)',
-  // error: 'rgb(244, 67, 54)',
-  // info: 'rgb(14, 214, 220)',
+  success: 'rgb(52, 199, 89)',
+  warning: 'rgb(255, 193, 7)',
+  error: 'rgb(244, 67, 54)',
+  info: 'rgb(14, 214, 220)',
 };
 
 export const CustomLightTheme = {
