@@ -1,4 +1,4 @@
-import { call, put, delay } from 'redux-saga/effects';
+import { call, put } from 'redux-saga/effects';
 
 import type { SagaIterator } from 'redux-saga';
 
@@ -29,8 +29,6 @@ export function* callFetchUsersWorker({ payload, type }: UsersAction): SagaItera
     const response: ExtractResponse<typeof users> = yield call(users, payload);
 
     yield call(throwResponseError, response);
-
-    yield delay(3000);
 
     yield put(setUsersState(response.data));
   } catch (error) {
