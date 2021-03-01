@@ -4,8 +4,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import type { FunctionComponent } from 'react';
 
-import Users from '@containers/Screens/Main/Users';
-import Followers from '@presentational/Screens/Main/Followers';
+import UsersScreen from '@containers/Screens/Main/Users';
+import FollowersScreen from '@containers/Screens/Main/Followers';
 
 import { getNavigatorOptions } from '@components/navigation';
 import { useCustomTheme } from '@hooks/theme';
@@ -23,7 +23,7 @@ const Main: FunctionComponent = () => {
   return (
     <MainStack.Navigator headerMode="screen" screenOptions={getNavigatorOptions(theme, insets)}>
       <MainStack.Screen
-        component={Users}
+        component={UsersScreen}
         name={constants.SCREEN_USERS}
         options={{
           headerTitle: 'Users',
@@ -31,7 +31,7 @@ const Main: FunctionComponent = () => {
       />
 
       <MainStack.Screen
-        component={Followers}
+        component={FollowersScreen}
         name={constants.SCREEN_FOLLOWERS}
         options={{
           headerTitle: 'Followers',

@@ -9,9 +9,15 @@ import { useInteractionEffect } from '@hooks/common';
 import { callFetchUsers, callFetchUsersPage } from '@flux/bus/data/saga/asyncActions';
 import { getUsersFetching, getUsersPageFetching, getUsersUpdateFetching } from '@selectors/ui';
 import { asyncTypes } from '@flux/bus/data/saga/asyncTypes';
+import { constants } from '@core/constants';
 import { getUsers } from '@selectors/data';
 
-const Users: FunctionComponent = () => {
+import type { UsersScreenProps } from '@typings/navigation';
+import type { User } from '@flux/bus/data/reducer';
+
+const Users: FunctionComponent<UsersScreenProps> = (props) => {
+  const { navigation } = props;
+
   const dispatch = useDispatch();
 
   const users = useSelector(getUsers);
@@ -34,6 +40,13 @@ const Users: FunctionComponent = () => {
     dispatch(callFetchUsers({ fetching: asyncTypes.CALL_FETCH_USERS_UPDATE }));
   }, [dispatch]);
 
+  const handlePressItem = useCallback(
+    (item: User) => {
+      navigation.push(constants.SCREEN_FOLLOWERS, { user: item });
+    },
+    [navigation]
+  );
+
   useInteractionEffect(handleInitLoad);
 
   return (
@@ -42,7 +55,7 @@ const Users: FunctionComponent = () => {
       loading={loading}
       loadingPage={loadingPage}
       loadingUpdate={loadingUpdate}
-      onPressItem={(item) => console.log('onPressItem', item)}
+      onPressItem={handlePressItem}
       onLoadNextPage={handleLoadNextPage}
       onUpdateList={handleUpdateList}
     />
