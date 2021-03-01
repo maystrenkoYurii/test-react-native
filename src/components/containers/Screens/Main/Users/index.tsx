@@ -24,6 +24,10 @@ const Users: FunctionComponent = () => {
 
   const handleInitLoad = useCallback(() => dispatch(callFetchUsers()), [dispatch]);
 
+  // const handleLoadNextPage = useCallback(() => {
+  //   users.length && dispatch(callFetchUsers({ fetching: asyncTypes.CALL_FETCH_USERS_PAGE, userId: users[users.length - 1] }));
+  // }, [dispatch, users]);
+
   const handleUpdateList = useCallback(() => {
     dispatch(callFetchUsers({ fetching: asyncTypes.CALL_FETCH_USERS_UPDATE }));
   }, [dispatch]);
