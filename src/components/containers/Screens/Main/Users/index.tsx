@@ -28,7 +28,7 @@ const Users: FunctionComponent<UsersScreenProps> = (props) => {
 
   const loadingUpdate = useSelector(getUsersUpdateFetching);
 
-  const handleInitLoad = useCallback(() => dispatch(callFetchUsers()), [dispatch]);
+  const handleLoadUsers = useCallback(() => dispatch(callFetchUsers()), [dispatch]);
 
   const handleLoadNextPage = useCallback(() => {
     const size = users.length;
@@ -47,7 +47,7 @@ const Users: FunctionComponent<UsersScreenProps> = (props) => {
     [navigation]
   );
 
-  useInteractionEffect(handleInitLoad);
+  useInteractionEffect(handleLoadUsers);
 
   return (
     <UsersComponent

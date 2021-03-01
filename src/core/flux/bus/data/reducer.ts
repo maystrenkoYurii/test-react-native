@@ -37,8 +37,9 @@ export type FollowersState = PickValues<InitialState, 'followers'>;
 export type UsersAction = Action<typeof types.SET_USERS_STATE, UsersState>;
 export type UsersAddAction = Action<typeof types.ADD_USERS_STATE, UsersState>;
 export type FollowersAction = Action<typeof types.SET_FOLLOWERS_STATE, FollowersState>;
+export type FollowersAddAction = Action<typeof types.ADD_FOLLOWERS_STATE, FollowersState>;
 
-type DataReducerAction = ReducerAction<UsersAction | UsersAddAction | FollowersAction>;
+type DataReducerAction = ReducerAction<UsersAction | UsersAddAction | FollowersAction | FollowersAddAction>;
 
 export const uiReducer = (state = initialState, action: DataReducerAction): InitialState => {
   switch (action.type) {
@@ -58,6 +59,15 @@ export const uiReducer = (state = initialState, action: DataReducerAction): Init
       return {
         ...state,
         followers: action.payload,
+      };
+
+    case types.ADD_FOLLOWERS_STATE:
+      return {
+        ...state,
+        followers: {
+          ...state.followers,
+          ...action.payload,
+        },
       };
 
     default:
