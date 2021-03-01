@@ -1,13 +1,16 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import type { FunctionComponent } from 'react';
 
 import ScreenLayout from '@presentational/Navigation/ScreenLayout';
+import UserList from '@presentational/UserList';
 
-const Followers: FunctionComponent = () => {
+import type { Props as UserListProps } from '@presentational/UserList';
+
+const Followers: FunctionComponent<UserListProps> = (props) => {
   return (
     <ScreenLayout>
-      <Fragment />
+      <UserList {...props} />
     </ScreenLayout>
   );
 };
