@@ -31,9 +31,8 @@ const Users: FunctionComponent<UsersScreenProps> = (props) => {
   const handleLoadUsers = useCallback(() => dispatch(callFetchUsers()), [dispatch]);
 
   const handleLoadNextPage = useCallback(() => {
-    const size = users.length;
-
-    size && dispatch(callFetchUsersPage({ fetching: asyncTypes.CALL_FETCH_USERS_PAGE, userId: users[size - 1]?.id }));
+    users.length &&
+      dispatch(callFetchUsersPage({ fetching: asyncTypes.CALL_FETCH_USERS_PAGE, userId: users[users.length - 1]?.id }));
   }, [dispatch, users]);
 
   const handleUpdateList = useCallback(() => {

@@ -6,12 +6,14 @@ import type { FunctionComponent } from 'react';
 import FollowersComponent from '@presentational/Screens/Main/Followers';
 
 import { useInteractionEffect } from '@hooks/common';
-import { callFetchFollowers } from '@flux/bus/data/saga/asyncActions';
+import { callFetchFollowers, callFetchFollowersPage } from '@flux/bus/data/saga/asyncActions';
 import { getFollowersFetching, getFollowersPageFetching, getFollowersUpdateFetching } from '@selectors/ui';
 import { asyncTypes } from '@flux/bus/data/saga/asyncTypes';
 import { getFollowers } from '@selectors/data';
+import { constants } from '@core/constants';
 
 import type { FollowersScreenProps } from '@typings/navigation';
+import type { User } from '@flux/bus/data/reducer';
 
 const Followers: FunctionComponent<FollowersScreenProps> = (props) => {
   const { navigation, route } = props;
@@ -20,7 +22,7 @@ const Followers: FunctionComponent<FollowersScreenProps> = (props) => {
 
   const dispatch = useDispatch();
 
-  const followers = useSelector(getFollowers);
+  const followers = useSelector(getFollowers)[user.login];
 
   const loading = useSelector(getFollowersFetching);
 
@@ -30,9 +32,25 @@ const Followers: FunctionComponent<FollowersScreenProps> = (props) => {
 
   const handleLoadFollowers = useCallback(() => dispatch(callFetchFollowers({ login: user.login })), [dispatch, user]);
 
+  const handleLoadNextPage = useCallback(() => {
+    const nextPage = Math.ceil(followers.length / constants.PAGINATION_COUNT) + 1 || 1;
+
+    followers.length &&
+      dispatch(
+        callFetchFollowersPage({ fetching: asyncTypes.CALL_FETCH_FOLLOWERS_PAGE, login: user.login, page: nextPage })
+      );
+  }, [dispatch, followers, user]);
+
   const handleUpdateList = useCallback(() => {
     dispatch(callFetchFollowers({ fetching: asyncTypes.CALL_FETCH_FOLLOWERS_UPDATE, login: user.login }));
   }, [dispatch, user]);
+
+  const handlePressItem = useCallback(
+    (item: User) => {
+      navigation.push(constants.SCREEN_FOLLOWERS, { user: item });
+    },
+    [navigation]
+  );
 
   useEffect(() => {
     navigation.setOptions({ headerTitle: user.login });
@@ -42,12 +60,12 @@ const Followers: FunctionComponent<FollowersScreenProps> = (props) => {
 
   return (
     <FollowersComponent
-      data={followers[user.login]}
+      data={followers}
       loading={loading}
       loadingPage={loadingPage}
       loadingUpdate={loadingUpdate}
-      onPressItem={() => console.log('onPressItem')}
-      onLoadNextPage={() => console.log('onLoadNextPage')}
+      onPressItem={handlePressItem}
+      onLoadNextPage={handleLoadNextPage}
       onUpdateList={handleUpdateList}
     />
   );

@@ -2,7 +2,7 @@ import * as SVG from 'react-native-svg';
 
 import type { Nullable } from '@typings/utils';
 
-export type NullableID = Nullable<string>;
+export type NullableID = Nullable<string | number>;
 
 export type DataItem<T> = T & { id: NullableID };
 
