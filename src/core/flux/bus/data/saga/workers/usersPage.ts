@@ -5,7 +5,7 @@ import type { SagaIterator } from 'redux-saga';
 import { asyncTypes } from '@flux/bus/data/saga/asyncTypes';
 
 import { callAddFetching, callRemoveFetching } from '@flux/bus/ui/saga/asyncActions';
-//import { addGeographyDayState, addGeographyWeekState, addGeographyMonthState } from '@flux/bus/data/actions';
+import { addUsersState } from '@flux/bus/data/actions';
 
 import { emitResponseErrorMessage, throwResponseError } from '@functions/response';
 import { users } from '@core/api/data';
@@ -30,7 +30,7 @@ export function* callFetchUsersPageWorker({ payload, type }: UsersPageAction): S
 
     yield call(throwResponseError, response);
 
-    console.log('response', response);
+    yield put(addUsersState(response.data));
   } catch (error) {
     yield call(emitResponseErrorMessage, error);
   } finally {

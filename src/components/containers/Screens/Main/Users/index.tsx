@@ -6,7 +6,7 @@ import type { FunctionComponent } from 'react';
 import UsersComponent from '@presentational/Screens/Main/Users';
 
 import { useInteractionEffect } from '@hooks/common';
-import { callFetchUsers } from '@flux/bus/data/saga/asyncActions';
+import { callFetchUsers, callFetchUsersPage } from '@flux/bus/data/saga/asyncActions';
 import { getUsersFetching, getUsersPageFetching, getUsersUpdateFetching } from '@selectors/ui';
 import { asyncTypes } from '@flux/bus/data/saga/asyncTypes';
 import { getUsers } from '@selectors/data';
@@ -24,9 +24,11 @@ const Users: FunctionComponent = () => {
 
   const handleInitLoad = useCallback(() => dispatch(callFetchUsers()), [dispatch]);
 
-  // const handleLoadNextPage = useCallback(() => {
-  //   users.length && dispatch(callFetchUsers({ fetching: asyncTypes.CALL_FETCH_USERS_PAGE, userId: users[users.length - 1] }));
-  // }, [dispatch, users]);
+  const handleLoadNextPage = useCallback(() => {
+    const size = users.length;
+
+    size && dispatch(callFetchUsersPage({ fetching: asyncTypes.CALL_FETCH_USERS_PAGE, userId: users[size - 1]?.id }));
+  }, [dispatch, users]);
 
   const handleUpdateList = useCallback(() => {
     dispatch(callFetchUsers({ fetching: asyncTypes.CALL_FETCH_USERS_UPDATE }));
@@ -41,7 +43,7 @@ const Users: FunctionComponent = () => {
       loadingPage={loadingPage}
       loadingUpdate={loadingUpdate}
       onPressItem={(item) => console.log('onPressItem', item)}
-      onLoadNextPage={() => console.log('onLoadNextPage')}
+      onLoadNextPage={handleLoadNextPage}
       onUpdateList={handleUpdateList}
     />
   );
